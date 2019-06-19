@@ -14,6 +14,7 @@
 # define IOPERAND_H
 
 #include <string>
+#include <cstdint>
 
 class IOperand;
 

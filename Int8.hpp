@@ -19,7 +19,10 @@ public:
 	IOperand const * operator*( IOperand const & rhs ) ;
 	IOperand const * operator/( IOperand const & rhs ) ;
 	IOperand const * operator%( IOperand const & rhs ) ;
-	
+
+private:
+	int 	_precision;
+	int8_t	_val;
 };
 
 #endif

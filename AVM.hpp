@@ -107,7 +107,7 @@ public:
 	};
 
 private:
-	std::stack<IOperand*> _stack;
+	std::stack < IOperand* > _stack;
 	
 };
 
