@@ -8,8 +8,7 @@ Factory::~Factory() {}
 IOperand const * Factory::createOperand( eOperandType type, std::string const & value ) const
 {
 	createFunc func = funcArr[type];
-	const IOperand *op = (this->*func)(value);
-	return op;
+	return (this->*func)(value);
 }
 
 IOperand const * Factory::createInt8( std::string const & value ) const
