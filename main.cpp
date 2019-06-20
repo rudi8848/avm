@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "IOperand.hpp"
+#include "Factory.hpp"
 #include <iostream>
 
 int		main(int argc, char **argv)
@@ -21,6 +22,11 @@ int		main(int argc, char **argv)
 		std::cout << argv[1] << std::endl;
 	}
 	else
+	{
 		//	read from standart input	";;" means EOF
+		Factory f;
+		const IOperand *ptr = f.createOperand(Factory::eOperandType::Int32, "42");
+		std::cout << ptr->getPrecision() << std::endl;
+	}
 	return (0);
 }
