@@ -25,8 +25,9 @@ int		main(int argc, char **argv)
 	{
 		//	read from standart input	";;" means EOF
 		Factory f;
-		const IOperand *ptr = f.createOperand(Factory::eOperandType::Int32, "42");
+		const IOperand *ptr = f.createOperand(eOperandType::Int32, "42");
 		std::cout << ptr->getPrecision() << std::endl;
+		std::cout << ptr->toString() << std::endl;
 	}
 	return (0);
 }

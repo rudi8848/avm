@@ -1,8 +1,10 @@
 
 template <typename T>
-Operand<T>::Operand( std::string const & value )
+Operand<T>::Operand( eOperandType type, std::string const & value )
 {
+		this->_type = type;
 		this->_val = stoi(value);
+		this->_str = value;
 }
 /*
 Operand::Operand( Operand const & operand )
@@ -27,7 +29,13 @@ int 			Operand<T>::getPrecision( void ) const
 }
 
 template <typename T>
-T 	Operand<T>::getVal() const
+eOperandType	Operand<T>::getType ( void ) const
 {
-	return this->_val;
+	return this->_str;
+}
+
+template <typename T>
+std::string const & Operand<T>::toString( void ) const
+{
+	return this->_str;
 }

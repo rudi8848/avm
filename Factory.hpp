@@ -5,22 +5,14 @@
 
 class Factory;
 
-typedef	IOperand const*( Factory::*createFunc )( std::string const & ) const;
+typedef	IOperand const*( Factory::*createFunc )(eOperandType type, std::string const & ) const;
 
 class Factory
 {
 public:
 	Factory();
 	~Factory();
-	typedef enum 
-	{
-		Int8,
-		Int16,
-		Int32,
-		Float,
-		Double,
-		Types
-	} eOperandType;
+	
 	
 	IOperand const * createOperand( eOperandType type, std::string const & value ) const;
 private:
@@ -35,7 +27,7 @@ private:
 		&Factory::createInt16,
 		&Factory::createInt32,
 		&Factory::createFloat,
-		&Factory::createDouble,
+		&Factory::createDouble
 	};
 };
 

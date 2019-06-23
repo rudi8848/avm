@@ -7,7 +7,7 @@ template <typename T>
 class Operand : public IOperand
 {
 public:
-	Operand( std::string const & value );
+	Operand( eOperandType type, std::string const & value );
 	// Operand( Operand const & operand );
 	// Operand & operator= ( Operand const & operand );
 	~Operand();
@@ -19,10 +19,12 @@ public:
 	// IOperand const * operator%( IOperand const & rhs ) ;
 
 	int 			getPrecision( void ) const;
-	T 	getVal() const;
-
+	eOperandType	getType ( void ) const;
+	std::string const & toString( void ) const;
 private:
-	T 		_val;
+	eOperandType _type;
+	T 			_val;
+	std::string _str;
 	
 };
 
