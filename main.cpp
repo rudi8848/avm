@@ -39,8 +39,17 @@ int		main(int argc, char **argv)
 		stack.push(ptr2);
 		std::cout << "push " << ptr2->toString() << std::endl;
 
+		const IOperand *ptr4 = f.createOperand(eOperandType::Int16, "128");
+		stack.push(ptr4);
+		std::cout << "push " << ptr4->toString() << std::endl;
+
+		const IOperand *ptr5 = *ptr4+*ptr;
+		stack.push(ptr5);
+		std::cout << "push " << ptr5->toString() << std::endl;
+
 		const IOperand *ptr3 = *ptr+*ptr1;
 		stack.push(ptr3);
+		std::cout << "push " << ptr3->toString() << std::endl;
 		
 		//const IOperand *ptr3 = f.createOperand(eOperandType::Double, "42.42.42");
 		//stack.push(ptr3);
