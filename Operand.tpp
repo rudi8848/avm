@@ -25,13 +25,14 @@ Operand<T>::~Operand()
 template <typename T>
 int 			Operand<T>::getPrecision( void ) const
 {
+	//if (type == double || type == float) return 2; else return 0; 
 	return 1;
 }
 
 template <typename T>
 eOperandType	Operand<T>::getType ( void ) const
 {
-	return this->_str;
+	return this->_type;
 }
 
 template <typename T>

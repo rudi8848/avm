@@ -17,11 +17,11 @@ public:
 	IOperand const * createOperand( eOperandType type, std::string const & value ) const;
 private:
 
-	IOperand const * createInt8( std::string const & value ) const;
-	IOperand const * createInt16( std::string const & value ) const;
-	IOperand const * createInt32( std::string const & value ) const;
-	IOperand const * createFloat( std::string const & value ) const;
-	IOperand const * createDouble( std::string const & value ) const;
+	IOperand const * createInt8( eOperandType type, std::string const & value ) const;
+	IOperand const * createInt16( eOperandType type, std::string const & value ) const;
+	IOperand const * createInt32( eOperandType type, std::string const & value ) const;
+	IOperand const * createFloat( eOperandType type, std::string const & value ) const;
+	IOperand const * createDouble( eOperandType type, std::string const & value ) const;
 	createFunc funcArr [Types] = {
 		&Factory::createInt8,
 		&Factory::createInt16,
