@@ -1,29 +1,31 @@
 NAME =	avm
 
-SRCS = 	Double.cpp 		\
-		Float.cpp		\
-		IOperand.cpp	\
-		Int16.cpp		\
-		Int32.cpp		\
-		Int8.cpp		\
+SRCS = 	IOperand.cpp	\
 		Lexer.cpp		\
 		Parser.cpp		\
 		Factory.cpp		\
 		AVM.cpp			\
 		main.cpp	
+		#Double.cpp 	\
+		#Float.cpp		\
+		#Int16.cpp		\
+		#Int32.cpp		\
+		#Int8.cpp		\
+		
 
-HDRS = 	Double.hpp		\
-		Float.hpp		\
-		IOperand.hpp	\
-		Operand.hpp	\
-		Operand.tpp	\
-		Int16.hpp		\
-		Int32.hpp		\
-		Int8.hpp		\
+HDRS = 	IOperand.hpp	\
+		Operand.hpp		\
 		Lexer.hpp		\
 		AVM.hpp			\
 		Parser.hpp		\
+		SuperStack.hpp		\
 		Factory.hpp	
+		#Double.hpp		\
+		#Float.hpp		\
+		#Int16.hpp		\
+		#Int32.hpp		\
+		#Int8.hpp		\
+		
 
 all: 	$(NAME)
 

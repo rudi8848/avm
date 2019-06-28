@@ -2,6 +2,7 @@
 # define OPERAND_H
 
 #include "IOperand.hpp"
+#include <iostream>
 
 template <typename T>
 class Operand : public IOperand
@@ -25,9 +26,9 @@ private:
 	eOperandType _type;
 	T 			_val;
 	std::string _str;
-	
+	unsigned	_precision;
 };
 
-#include "Operand.tpp"
+#include "Operand.cpp"
 
 #endif

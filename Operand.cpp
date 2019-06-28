@@ -2,9 +2,31 @@
 template <typename T>
 Operand<T>::Operand( eOperandType type, std::string const & value )
 {
+		if ( value.empty())
+		{
+			std::cerr << "Error: No number" << std::endl;
+			exit(EXIT_FAILURE);	//	throw exception
+		}
 		this->_type = type;
 		this->_val = stoi(value);
 		this->_str = value;
+		this->_precision = 0;
+		if (type == Float || type == Double)
+		{
+			bool point = false;
+			for (auto i = value.begin(); i != value.end(); ++i)
+			{
+				if (point)
+					++this->_precision;
+				if ((*i == '.' || *i == ',') && !point)
+					point = true;
+				else if ((*i == '.' || *i == ',') && point)
+				{
+					std::cerr << "Error: Extra point" << std::endl;
+					exit(EXIT_FAILURE);
+				}
+			}
+		}
 }
 /*
 Operand::Operand( Operand const & operand )
@@ -25,8 +47,7 @@ Operand<T>::~Operand()
 template <typename T>
 int 			Operand<T>::getPrecision( void ) const
 {
-	//if (type == double || type == float) return 2; else return 0; 
-	return 1;
+	return this->_precision;
 }
 
 template <typename T>
