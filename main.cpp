@@ -27,7 +27,7 @@ int		main(int argc, char **argv)
 		//	read from standart input	";;" means EOF
 		Factory f;
 		SuperStack<const IOperand*> stack;
-		const IOperand *ptr = f.createOperand(eOperandType::Int32, "42");
+		const IOperand *ptr = f.createOperand(eOperandType::Int8, "42");
 		stack.push(ptr);
 		std::cout << "push " << ptr->toString() << std::endl;
 		
@@ -38,6 +38,9 @@ int		main(int argc, char **argv)
 		const IOperand *ptr2 = f.createOperand(eOperandType::Double, "22,222");
 		stack.push(ptr2);
 		std::cout << "push " << ptr2->toString() << std::endl;
+
+		const IOperand *ptr3 = *ptr+*ptr1;
+		stack.push(ptr3);
 		
 		//const IOperand *ptr3 = f.createOperand(eOperandType::Double, "42.42.42");
 		//stack.push(ptr3);
