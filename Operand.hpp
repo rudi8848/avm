@@ -15,10 +15,10 @@ public:
 	~Operand();
 
 	IOperand const * operator+( IOperand const & rhs ) const ;
-	// IOperand const * operator-( IOperand const & rhs ) const ;
-	// IOperand const * operator*( IOperand const & rhs ) const ;
-	// IOperand const * operator/( IOperand const & rhs ) const ;
-	// IOperand const * operator%( IOperand const & rhs ) const ;
+	IOperand const * operator-( IOperand const & rhs ) const ;
+	IOperand const * operator*( IOperand const & rhs ) const ;
+	IOperand const * operator/( IOperand const & rhs ) const ;
+	IOperand const * operator%( IOperand const & rhs ) const ;
 
 	int 			getPrecision( void ) const;
 	eOperandType	getType ( void ) const;
