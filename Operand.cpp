@@ -179,7 +179,7 @@ IOperand const * Operand<T>::operator/( IOperand const & rhs ) const
 	}
 	return f.createOperand(std::max(this->getType(), rhs.getType()), this->toString());
 }
-
+/*
 template <typename T>
 IOperand const * Operand<T>::operator%( IOperand const & rhs ) const
 {
@@ -208,3 +208,4 @@ IOperand const * Operand<T>::operator%( IOperand const & rhs ) const
 	}
 	return f.createOperand(std::max(this->getType(), rhs.getType()), this->toString());
 }
+*/

@@ -13,8 +13,8 @@ class SuperStack : public std::stack<T>
 
 public:
 	SuperStack() : std::stack<T>() {}
-	SuperStack( SuperStack const & stack ) {}
-	SuperStack & operator= ( SuperStack const & st ) {}
+	//SuperStack( SuperStack const & stack ) {}
+	//SuperStack & operator= ( SuperStack const & st ) {}
 	~SuperStack() {}
 
 	T 		top( void ) const;
