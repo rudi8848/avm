@@ -4,6 +4,7 @@
 #include "IOperand.hpp"
 #include "Factory.hpp"
 #include <iostream>
+#include <cmath>
 
 template <typename T>
 class Operand : public IOperand
@@ -18,7 +19,7 @@ public:
 	IOperand const * operator-( IOperand const & rhs ) const ;
 	IOperand const * operator*( IOperand const & rhs ) const ;
 	IOperand const * operator/( IOperand const & rhs ) const ;
-	//IOperand const * operator%( IOperand const & rhs ) const ;
+	IOperand const * operator%( IOperand const & rhs ) const ;
 
 	int 			getPrecision( void ) const;
 	eOperandType	getType ( void ) const;

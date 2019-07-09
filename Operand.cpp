@@ -179,33 +179,43 @@ IOperand const * Operand<T>::operator/( IOperand const & rhs ) const
 	}
 	return f.createOperand(std::max(this->getType(), rhs.getType()), this->toString());
 }
-/*
+
 template <typename T>
 IOperand const * Operand<T>::operator%( IOperand const & rhs ) const
 {
 	Factory f;
+	
 	switch (rhs.getType())
-	{
+	{	
 		case (Int8):
 		case (Int16):
 		case (Int32):
 		{
 			auto rval = std::stoi(rhs.toString());
-			return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(this->_val % rval));
+			switch (this->getType())
+			{
+				case (Int8):
+				case (Int16):
+				case (Int32):
+				{
+					return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(this->_val % rval));
+				}
+				default:
+					return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(fmod(this->_val, rval)));
+			}
 		}
 		case (Float):
 		{
 			auto rval = std::stof(rhs.toString());
-			return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(this->_val % rval));
+			return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(fmod(this->_val, rval)));
 		}
 		case (Double):
 		{
 			auto rval = std::stod(rhs.toString());
-			return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(this->_val % rval));
+			return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(fmod(this->_val, rval)));
 		}
 		default:
 			break ;
 	}
 	return f.createOperand(std::max(this->getType(), rhs.getType()), this->toString());
 }
-*/
