@@ -43,7 +43,7 @@ int		main(int argc, char **argv)
 		stack.push(ptr4);
 		std::cout << "push " << ptr4->toString() << std::endl;
 
-		const IOperand *ptr5 = *ptr4 + *ptr;
+		const IOperand *ptr5 = *ptr4 % *ptr;
 		stack.push(ptr5);
 		std::cout << "push " << ptr5->toString() << std::endl;
 

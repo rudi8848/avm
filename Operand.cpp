@@ -1,4 +1,6 @@
 
+#include "IOperand.hpp"
+
 template <typename T>
 Operand<T>::Operand( eOperandType type, std::string const & value )
 {
@@ -9,24 +11,32 @@ Operand<T>::Operand( eOperandType type, std::string const & value )
 			exit(EXIT_FAILURE);	//	throw exception
 		}
 		this->_type = type;
-		this->_val = stoi(value);
 		this->_str = value;
-		this->_precision = 0;
-		if (type == Float || type == Double)
+        this->_precision = 0;
+		if (type == Int8 || type == Int16 || type == Int32)
+            this->_val = stoi(value);
+		else if (type == Float || type == Double)
 		{
+		    std::string tmp = "";
 			bool point = false;
 			for (auto i = value.begin(); i != value.end(); ++i)
 			{
 				if (point)
 					++this->_precision;
-				if ((*i == '.' || *i == ',') && !point)
-					point = true;
-				else if ((*i == '.' || *i == ',') && point)
+				if ((*i == '.' || *i == ',') && !point) {
+                    point = true;
+                    tmp += ".";
+                }
+					else if ((*i == '.' || *i == ',') && point)
 				{
-					std::cerr << "Error: Extra point" << std::endl;
-					exit(EXIT_FAILURE);
-				}
+                    std::cerr << "Error: Extra point" << std::endl;
+                    exit(EXIT_FAILURE);
+                }
+					else
+					    tmp += *i;
 			}
+            this->_val = (type == Double ? stod(tmp) : stof(tmp));
+			this->_str = tmp;
 		}
 }
 /*
@@ -198,11 +208,12 @@ IOperand const * Operand<T>::operator%( IOperand const & rhs ) const
 				case (Int16):
 				case (Int32):
 				{
-					return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(this->_val % rval));
+					return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(int (this->_val) % int(rval)));
 				}
 				default:
 					return f.createOperand(std::max(this->getType(), rhs.getType()), std::to_string(fmod(this->_val, rval)));
-			}
+
+            }
 		}
 		case (Float):
 		{
