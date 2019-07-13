@@ -2,7 +2,8 @@
 # define LEXER_HPP
 
 
-#include <string>
+#include <iostream>
+#include <regex>
 
 typedef enum
 {
@@ -18,7 +19,8 @@ typedef enum
 	PRINT,
 	EXIT,
 	WORDS
-} e_keywords;
+} e_keyword;
+/*
 
 std::string keywords [WORDS] = {
 	"push",
@@ -32,8 +34,8 @@ std::string keywords [WORDS] = {
 	"mod",
 	"print",
 	"exit"
-}
-
+};
+*/
 typedef enum 
 {
 	NEUTRAL,
@@ -42,5 +44,7 @@ typedef enum
 	COMMENT,	// 	';'
 	END 		//	';;'
 } e_states;
+
+e_keyword getToken( );
 
 #endif

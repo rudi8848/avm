@@ -14,58 +14,11 @@
 #include "Factory.hpp"
 #include "SuperStack.hpp"
 #include <iostream>
+#include "Lexer.hpp"
 
-int		main(int argc, char **argv)
+
+int     main(void)
 {
-	if (argc > 1)
-	{
-		//	read from files argv
-		std::cout << argv[1] << std::endl;
-	}
-	else
-	{
-		//	read from standart input	";;" means EOF
-		Factory f;
-		SuperStack<const IOperand*> stack;
-		const IOperand *ptr = f.createOperand(eOperandType::Int8, "42");
-		stack.push(ptr);
-		std::cout << "push " << ptr->toString() << std::endl;
-		
-		const IOperand *ptr1 = f.createOperand(eOperandType::Double, "32.32");
-		stack.push(ptr1);
-		std::cout << "push " << ptr1->toString() << std::endl;
-		
-		const IOperand *ptr2 = f.createOperand(eOperandType::Double, "22,222");
-		stack.push(ptr2);
-		std::cout << "push " << ptr2->toString() << std::endl;
-
-		const IOperand *ptr4 = f.createOperand(eOperandType::Int16, "128");
-		stack.push(ptr4);
-		std::cout << "push " << ptr4->toString() << std::endl;
-
-		const IOperand *ptr5 = *ptr4 % *ptr;
-		stack.push(ptr5);
-		std::cout << "push " << ptr5->toString() << std::endl;
-
-		const IOperand *ptr3 = *ptr / *ptr1;
-		stack.push(ptr3);
-		std::cout << "push " << ptr3->toString() << std::endl;
-		
-		//const IOperand *ptr3 = f.createOperand(eOperandType::Double, "42.42.42");
-		//stack.push(ptr3);
-		std::cout << "Iterator: " << std::endl;
-		for (auto i : stack)
-		{
-			std::cout << i->getPrecision() << " ";
-			std::cout <<i->toString() << std::endl;
-		}
-		std::cout << "top, pop: " << std::endl;
-		while (stack.size())
-		{
-			std::cout << "top: " << stack.top()->toString() << std::endl;
-			std::cout << "pop() " << std::endl;
-			stack.pop();
-		}
-	}
-	return (0);
+    getToken();
+    return 0;
 }
