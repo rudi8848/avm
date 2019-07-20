@@ -1,7 +1,11 @@
 CLASSES
 
+series of
+instructions, with one instruction per line
+
 lexer :
-    reads input until EOF,
+    reads input until EOF or ";;",
+    read line by line. 1st word can be single instruction OR require an argument OR there could be comments
     has few states
     returns token  when finds match to one of patterns
 
@@ -15,6 +19,7 @@ amv :
     gets a valid sequence of tokens
     calls factory
     performs calculations and stack manipulations
+
 
 
 
@@ -74,3 +79,9 @@ amv :
     	return (0);
     }
      */
+
+     парсер:
+        берет из лексера по 1 токену (пока есть токены и пока не пришел ;;) и пихает в список (при этом проверяет последовательность).
+        когда готово - передает список в авм
+     авм:
+        читает инструкции, вызывает фактори и выполняет
