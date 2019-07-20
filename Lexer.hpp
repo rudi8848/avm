@@ -20,6 +20,13 @@ typedef enum
 	EXIT,
 	WORDS
 } e_keyword;
+
+struct Token
+{
+    int type;       //  keyword, operand, end of expression
+    int content;    //  what exactly
+    union number;  //  for operand
+};
 /*
 
 std::string keywords [WORDS] = {
