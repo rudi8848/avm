@@ -8,7 +8,8 @@
 typedef enum {
     INSTRUCTION,
     OPERAND,
-    EOL         //  end of line. we must read until ;; or error
+    ERROR,
+    END         //  end of line. we must read until ;; or error
 } eTokenType;
 
 typedef enum
@@ -34,16 +35,17 @@ typedef enum
     MOD,
     PRINT,
     EXIT,
+    COMMENT,
     WORDS
 } eKeyword;
-
+/*
 typedef enum
 {
     NEUTRAL,
     OPERAND_WAITING,
     EOL_WAITING,
-    COMMENT,	// 	';'
+    //COMMENT,	// 	';'
     END 		//	';;'
 } eStates;
-
+*/
 #endif //AVM_DEFINES_H

@@ -4,6 +4,7 @@
 #include "defines.h"
 #include <iostream>
 #include <regex>
+#include "Token.hpp"
 
 
 
@@ -28,6 +29,6 @@ std::string keywords [WORDS] = {
 */
 
 
-eKeyword getToken( );
+Token   *getToken( std::string const & word );
 
 #endif

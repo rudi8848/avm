@@ -14,11 +14,12 @@
 #include "Factory.hpp"
 #include "SuperStack.hpp"
 #include <iostream>
-#include "Lexer.hpp"
+#include "Parser.hpp"
 
 
 int     main(void)
 {
-    getToken();
+    Parser parser;
+    parser.getParsedInput();
     return 0;
 }
