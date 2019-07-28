@@ -1,10 +1,15 @@
 #include "Lexer.hpp"
 
-e_keyword getToken( ) {
+eKeyword getToken( std::string const & line) {
+
+    //  relocate to parser
     std::string line;
     std::getline(std::cin, line);
+    //
 
     std::cmatch result;
+
+
     std::regex operand("(int(8|16|32))"
                        "(\\()"
                        "([+-]?[0-9]+)"  //  [.,] for double

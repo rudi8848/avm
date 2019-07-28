@@ -15,16 +15,7 @@
 
 #include <string>
 #include <cstdint>
-
-typedef enum 
-	{
-		Int8,
-		Int16,
-		Int32,
-		Float,
-		Double,
-		Types
-	} eOperandType;
+#include "defines.h"
 
 class IOperand
 {
