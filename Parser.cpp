@@ -1,6 +1,5 @@
 #include "Parser.hpp"
 
-
 /*
  *  check if there is one instruction per line (via states)
  * */
@@ -9,17 +8,22 @@ void    Parser::getParsedInput()
     Token *tok;
 
     std::string line;
-    while (std::getline(std::cin, line))
+    while (true)
     {
+        std::getline(std::cin, line);
         if (!line.size())
         {
-            break;
+            continue;
+        }
+        size_t commentPos = -1;
+        if ((commentPos = line.find(';') ) != std::string::npos && line.find(";;") == std::string::npos)
+        {
+            line = line.substr(0, commentPos);
+            std::cout << "COMMENT : " << line << std::endl;
         }
         std::istringstream ist(line);
         std::string word;
 
-        //while ( ist >> word )
-       // {
             /*  reading 1 line by single words
              * first MUST be an instruction (or comment, in this case no need to read next words)
              * second OPTIONAL operand or comment
@@ -37,9 +41,13 @@ void    Parser::getParsedInput()
                             {
                                 this->tokens.push_back(tok);
                             }
+                            else {
+                                std::cout << __PRETTY_FUNCTION__ << " : unexpected argument" << std::endl;
+                                exit(0);
+                            }
                         }
                         else {
-                            std::cout << __PRETTY_FUNCTION__ << " : error 1" << std::endl;
+                            std::cout << __PRETTY_FUNCTION__ << " : argument expected" << std::endl;
                             exit(0);
                         }
                     }
@@ -50,14 +58,14 @@ void    Parser::getParsedInput()
                         if (tok->type == INSTRUCTION && tok->content == EXIT)
                             break;
                         else {
-                            std::cout << __PRETTY_FUNCTION__ << " : error 2" << std::endl;
+                            std::cout << __PRETTY_FUNCTION__ << " : too much arguments" << std::endl;
                             exit(0);
                         }
                     }
                 }
                 else
                 {
-                    std::cout << __PRETTY_FUNCTION__ << " : error 2" << std::endl;
+                    std::cout << __PRETTY_FUNCTION__ << " : parse error" << std::endl;
                     exit(0);
                 }
             }
