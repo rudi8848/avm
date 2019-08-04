@@ -13,7 +13,7 @@ class Parser {
 public:
     void    getParsedInput();
 private:
-    std::list<Token*>;
+    std::list<Token*> tokens;
 };
 
 #endif

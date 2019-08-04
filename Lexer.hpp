@@ -6,29 +6,12 @@
 #include <regex>
 #include "Token.hpp"
 
-
-
-
-
-
-/*
-
-std::string keywords [WORDS] = {
-	"push",
-	"pop",
-	"dump",
-	"assert",
-	"add",
-	"sub",
-	"mul",
-	"div",
-	"mod",
-	"print",
-	"exit"
+class Lexer
+{
+    static bool    isInstruction(std::string const & word, eKeyword &content);
+    static bool    isOperand(std::string const & word, eOperandType & type, std::string &value);
+public:
+    static Token* getToken( std::string const & word );
 };
-*/
-
-
-Token   *getToken( std::string const & word );
 
 #endif

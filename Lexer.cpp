@@ -1,8 +1,7 @@
 #include "Lexer.hpp"
 
-bool    isInstruction(std::string const & word, eKeyword &content)
+bool    Lexer::isInstruction(std::string const & word, eKeyword &content)
 {
-
         if (word == "push")
         {
             content = PUSH;
@@ -63,13 +62,10 @@ bool    isInstruction(std::string const & word, eKeyword &content)
             content = COMMENT;
             return true;
         }
-        else
-            std::cout << "not an instruction" << std::endl;
-            return false;
-
+        return false;
 }
 
-bool    isOperand(std::string const & word, eOperandType & type, std::string &value)
+bool    Lexer::isOperand(std::string const & word, eOperandType & type, std::string &value)
 {
     std::cmatch result;
 
@@ -86,47 +82,59 @@ bool    isOperand(std::string const & word, eOperandType & type, std::string &va
 
     if (std::regex_match(word.c_str(), result, integer))
     {
-        for (auto i : result)
-            std::cout << i << std::endl;
+        unsigned i = result.size() - 2;
+
+        value = result.str(i);
+
+        std::string operand = result.str(i - 2);
+        size_t len = operand.length();
+        if (operand[len - 1] == '2')
+            type = Int32;
+        else if (operand[len - 1] == '6')
+            type = Int16;
+        else if (operand[len - 1] == '8')
+            type = Int8;
+
         return  true;
     }
     else if (std::regex_match(word.c_str(), result, point))
     {
-        for (auto i : result)
-            std::cout << i << std::endl;
+        unsigned i = result.size() - 2;
+
+        value = result.str(i);
+        std::string operand = result.str(0);
+
+        if (operand.find("double"))
+            type =  Double;
+        else
+            type = Float;
+
         return true;
     }
     return false;
 }
 
-Token *getToken( std::string const & word) {
+Token *Lexer::getToken( std::string const & word) {
 
-    //  relocate to parser
-
-    //
-
-    //  start of lexer
     Token *tok = new Token;
 
+    eKeyword        cont;
+    std::string     value;
+    eOperandType    type;
 
-        eKeyword cont;
-        std::string value;
-        eOperandType type;
-
-        if (isInstruction(word, cont))
-        {
-            tok->type = INSTRUCTION;
-            tok->content = cont;
-            return tok;
-        }
-        else if (isOperand(word, type, value))
-        {
-            tok->type = OPERAND;
-            tok->content = type;
-            tok->value = value;
-            return tok;
-        }
-    std::cout << "NO MATCHES" << std::endl;
+    if (isInstruction(word, cont))
+    {
+        tok->type = INSTRUCTION;
+        tok->content = cont;
+        return tok;
+    }
+    else if (isOperand(word, type, value))
+    {
+        tok->type = OPERAND;
+        tok->content = type;
+        tok->value = value;
+        return tok;
+    }
     delete(tok);
     tok = nullptr;
     return tok;
