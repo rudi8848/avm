@@ -5,10 +5,14 @@ AVM::~AVM(){}
 void AVM::execute(std::list<Token*> & tokens) {
     std::cout << __PRETTY_FUNCTION__<< std::endl;
     auto i = tokens.begin();
+
+    if (tokens.empty() || tokens.back()->type != INSTRUCTION || tokens.back()->content != EXIT) {
+        throw NoExitInstruction();
+    }
     try {
         while (i != tokens.end())
         {
-
+            std::cout << (*i)->type << " : " << (*i)->content << std::endl;
                 if ((*i)->type == INSTRUCTION) {
 
                 } else {
@@ -53,7 +57,7 @@ const char* AVM::ModuloByZero::what() const throw() {
 
 AVM::NoExitInstruction::NoExitInstruction() : exception() {}
 const char* AVM::NoExitInstruction::what() const throw() {
-	return "The program doesn’t have an exit instruction";
+	return "The program doesnt have an exit instruction";
 }
 
 const char* AVM::FalseAssert::what() const throw() {

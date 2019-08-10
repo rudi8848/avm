@@ -9,8 +9,8 @@ std::list<Token*> &    Parser::getParsedInput()
 
     std::string line;
     try {
-        while (true) {
-            std::getline(std::cin, line);
+        while (std::getline(std::cin, line)) {
+            //std::getline(std::cin, line);
             if (!line.size()) {
                 continue;
             }
@@ -45,14 +45,18 @@ std::list<Token*> &    Parser::getParsedInput()
                     if (ist >> word &&
                         (tok = Lexer::getToken(word))) // if there is next word and it is not comment - return error
                     {
-                        if (tok->type == INSTRUCTION && tok->content == EXIT)
+                        if (tok->type == INSTRUCTION && tok->content == EXIT) {
+                            this->tokens.push_back(tok);
                             break;
+                        }
                         else {
                             std::cerr << "Too much arguments." << std::endl;
                             throw SyntaxError();
                         }
                     }
                 } else {
+                    if (word.empty())
+                        return this->tokens;
                     throw UnknownInstruction();
                 }
             }

@@ -9,7 +9,7 @@
 #include "defines.h"
 
 class Parser {
-
+//  initialize empty list of tokens
 public:
     std::list<Token*> &    getParsedInput( void );
 private:
