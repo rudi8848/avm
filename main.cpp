@@ -15,11 +15,22 @@
 #include "SuperStack.hpp"
 #include <iostream>
 #include "Parser.hpp"
+#include "AVM.hpp"
 
 
 int     main(void)
 {
     Parser parser;
-    parser.getParsedInput();
+    AVM avm;
+
+    try
+    {
+        avm.execute(parser.getParsedInput());
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        exit(EXIT_FAILURE);
+    }
     return 0;
 }

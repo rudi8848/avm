@@ -4,16 +4,22 @@
 #include <exception>
 #include <stack>
 #include "IOperand.hpp"
+#include "Token.hpp"
+#include "SuperStack.hpp"
 
 class AVM
 {
+    SuperStack<IOperand *> stack;
+
 public:
 	AVM();
 	AVM( AVM const & avm );
 	AVM & operator= ( AVM const & avm );
 	~AVM();
 
-	void	push( IOperand *opetand );
+	void execute(std::list<Token*> & tokens);
+
+	void	push( IOperand *operand );
 	void	pop( void );
 	void	dump( void );
 	void	assert( std::string const & val );
@@ -26,21 +32,7 @@ public:
 	void	exit( void );
 
 
-	class SyntaxError : public std::exception
-	{
-	public:
-		SyntaxError();
-		~SyntaxError() throw () {};
-		virtual const char *what() const throw();
-	};
 
-	class UnknownInstruction : public std::exception
-	{
-	public:
-		UnknownInstruction();
-		~UnknownInstruction() throw () {};
-		virtual const char *what() const throw();
-	};
 
 	class Overflow : public std::exception
 	{

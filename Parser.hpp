@@ -11,9 +11,25 @@
 class Parser {
 
 public:
-    void    getParsedInput();
+    std::list<Token*> &    getParsedInput( void );
 private:
     std::list<Token*> tokens;
+
+    class SyntaxError : public std::exception
+    {
+    public:
+        SyntaxError();
+        ~SyntaxError() throw () {};
+        virtual const char *what() const throw();
+    };
+
+    class UnknownInstruction : public std::exception
+    {
+    public:
+        UnknownInstruction();
+        ~UnknownInstruction() throw () {};
+        virtual const char *what() const throw();
+    };
 };
 
 #endif
