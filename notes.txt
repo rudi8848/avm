@@ -85,3 +85,11 @@ amv :
         когда готово - передает список в авм
      авм:
         читает инструкции, вызывает фактори и выполняет
+
+
+
+        INSTRUCTIONS:
+
+        unary:  push, pop, dump, assert, print, exit
+
+        binary: add, sub, mul, div, mod

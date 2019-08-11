@@ -65,6 +65,8 @@ bool    Lexer::isInstruction(std::string const & word, eKeyword &content)
         return false;
 }
 
+
+
 bool    Lexer::isOperand(std::string const & word, eOperandType & type, std::string &value)
 {
     std::cmatch result;
@@ -113,6 +115,8 @@ bool    Lexer::isOperand(std::string const & word, eOperandType & type, std::str
     }
     return false;
 }
+
+
 
 Token *Lexer::getToken( std::string const & word) {
 

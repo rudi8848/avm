@@ -5,6 +5,7 @@ AVM::~AVM(){}
 void AVM::execute(std::list<Token*> & tokens) {
     std::cout << __PRETTY_FUNCTION__<< std::endl;
     auto i = tokens.begin();
+    Factory factory;
 
     if (tokens.empty() || tokens.back()->type != INSTRUCTION || tokens.back()->content != EXIT) {
         throw NoExitInstruction();
@@ -12,13 +13,77 @@ void AVM::execute(std::list<Token*> & tokens) {
     try {
         while (i != tokens.end())
         {
-            std::cout << (*i)->type << " : " << (*i)->content << std::endl;
-                if ((*i)->type == INSTRUCTION) {
+            //std::cout << (*i)->type << " : " << (*i)->content << std::endl;
 
+            if ((*i)->type == INSTRUCTION) {
+                switch ((*i)->content)
+                {
+                    case PUSH:
+                    {
+                        ++i;
+                        if ((*i)->type != OPERAND)
+                            throw TooLessOperands();
+                        const IOperand * op = factory.createOperand((eOperandType)(*i)->content, (*i)->value);
+                        this->_stack.push(op);
+                        break;
+                    }
+                    case POP:
+                    {
+                        if (this->_stack.empty())
+                            throw PopEmptyStack();
+                        this->_stack.pop();
+                        break;
+                    }
+                    case DUMP:
+                    {
+                        for (auto i : this->_stack) {
+                            std::cout << i->toString() << std::endl;
+                        }
+                        break;
+                    }
+                    case ASSERT:
+                    {
+                        ++i;
+                        if ((*i)->type == OPERAND) {
+
+                            const IOperand *op = this->_stack.top();
+                            if ((*i)->content != op->getPrecision() || (*i)->value == op->toString())
+                                throw FalseAssert();
+                        }
+                        break;
+                    }
+                    case ADD:
+                    {
+                        break;
+                    }
+                    case SUB:
+                    {
+                        break;
+                    }
+                    case MUL:
+                    {
+                        break;
+                    }
+                    case DIV:
+                    {
+                        break;
+                    }
+                    case MOD:
+                    {
+                        break;
+                    }
+                    case PRINT:
+                    {
+                        break;
+                    }
+                    default:
+                        break;
+                }
                 } else {
                    // throw SyntaxError();
                    return;
                 }
+
                 ++i;
         }
 
@@ -60,10 +125,12 @@ const char* AVM::NoExitInstruction::what() const throw() {
 	return "The program doesnt have an exit instruction";
 }
 
+AVM::FalseAssert::FalseAssert() : exception() {}
 const char* AVM::FalseAssert::what() const throw() {
 	return "An assert instruction is not true";
 }
 
+AVM::TooLessOperands::TooLessOperands() : exception() {}
 const char* AVM::TooLessOperands::what() const throw() {
 	return "The stack is composed of strictly less that two values when an arithmetic instruction is executed";
 }

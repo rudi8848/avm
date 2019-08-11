@@ -6,6 +6,7 @@
 #include "IOperand.hpp"
 #include "Token.hpp"
 #include "SuperStack.hpp"
+#include "Factory.hpp"
 
 class AVM
 {
@@ -99,7 +100,7 @@ public:
 	};
 
 private:
-	std::stack < IOperand* > _stack;
+	SuperStack <const IOperand* > _stack;
 	
 };
 

@@ -6,9 +6,9 @@
 
 struct Token
 {
-    eTokenType type;           //  keyword, operand, end of expression
-    int content;        //  what exactly    (eKeyword, eOperandType)
-    std::string value;  //  for operand
+    eTokenType  type;           //  instruction, operand
+    int         content;        //  what exactly    (eKeyword, eOperandType)
+    std::string value;          //  for operand
 };
 
 #endif

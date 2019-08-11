@@ -33,19 +33,3 @@ private:
 };
 
 #endif
-
-/*
- *  while ((tok = getToken()) != ERROR || tok != END)
- *  {
- *
- *  }
- *  std::string line;
-    std::getline(std::cin, line);
-
-    std::istringstream ist(line);
-    std::string word;
-
-    while ( ist >> word )
-        getToken(word);
- *
- * */
