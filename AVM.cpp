@@ -54,22 +54,68 @@ void AVM::execute(std::list<Token*> & tokens) {
                     }
                     case ADD:
                     {
+                        if (_stack.size() < 2) {
+                            throw TooLessOperands();
+                        }
+                        const IOperand  *right = _stack.top();
+                        _stack.pop();
+                        const IOperand  *left = _stack.top();
+                        _stack.pop();
+                        _stack.push(*left + *right);
                         break;
                     }
                     case SUB:
                     {
+                        if (_stack.size() < 2) {
+                            throw TooLessOperands();
+                        }
+                        const IOperand  *right = _stack.top();
+                        _stack.pop();
+                        const IOperand  *left = _stack.top();
+                        _stack.pop();
+                        _stack.push(*left - *right);
                         break;
                     }
                     case MUL:
                     {
+                        if (_stack.size() < 2) {
+                            throw TooLessOperands();
+                        }
+                        const IOperand  *right = _stack.top();
+                        _stack.pop();
+                        const IOperand  *left = _stack.top();
+                        _stack.pop();
+                        _stack.push(*left * *right);
                         break;
                     }
                     case DIV:
                     {
+                        if (_stack.size() < 2) {
+                            throw TooLessOperands();
+                        }
+                        const IOperand  *right = _stack.top();
+                        if (std::stod(right->toString()) ==  0) {
+                            throw DivisionByZero();
+                        }
+                        _stack.pop();
+                        const IOperand  *left = _stack.top();
+                        _stack.pop();
+                        _stack.push(*left / *right);
                         break;
                     }
                     case MOD:
                     {
+                        if (_stack.size() < 2) {
+                            throw TooLessOperands();
+                        }
+                        const IOperand  *right = _stack.top();
+                        if (std::stod(right->toString()) ==  0) {
+                            throw DivisionByZero();
+                        }
+                        _stack.pop();
+                        const IOperand  *left = _stack.top();
+                        _stack.pop();
+                        _stack.push(*left % *right);
                         break;
                     }
                     case PRINT:
