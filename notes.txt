@@ -93,3 +93,10 @@ amv :
         unary:  push, pop, dump, assert, print, exit
 
         binary: add, sub, mul, div, mod
+
+
+
+        TODO:
+        1.  Do NOT close stdin after exit instruction. End of input is only ;;
+        2. figure out what for is precision
+        3. how to check overflow and what the heck is underflow

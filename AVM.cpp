@@ -47,7 +47,8 @@ void AVM::execute(std::list<Token*> & tokens) {
                         if ((*i)->type == OPERAND) {
 
                             const IOperand *op = this->_stack.top();
-                            if ((*i)->content != op->getPrecision() || (*i)->value == op->toString())
+
+                            if ((*i)->content != op->getType() || (*i)->value != op->toString())
                                 throw FalseAssert();
                         }
                         break;
@@ -120,6 +121,10 @@ void AVM::execute(std::list<Token*> & tokens) {
                     }
                     case PRINT:
                     {
+                        if (_stack.top()->getType() != Int8) {
+                            throw FalseAssert();
+                        }
+                        std::cout << (char)std::stoi(_stack.top()->toString()) << std::endl;
                         break;
                     }
                     default:
