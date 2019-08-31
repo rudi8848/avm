@@ -25,7 +25,14 @@ int     main(void)
 
     try
     {
-        avm.execute(parser.getParsedInput());
+        std::list<Token*> input = parser.getParsedInput();
+        while (input.empty()) {
+
+            std::cerr << "Repeat input" << std::endl;
+            input = parser.getParsedInput();
+        
+        }
+        avm.execute(input);
     }
     catch (std::exception &e)
     {

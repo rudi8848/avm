@@ -29,7 +29,6 @@ void AVM::execute(std::list<Token*> & tokens) {
     try {
         while (i != tokens.end())
         {
-            //std::cout << (*i)->type << " : " << (*i)->content << std::endl;
 
             if ((*i)->type == INSTRUCTION) {
                 switch ((*i)->content)

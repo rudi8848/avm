@@ -4,7 +4,7 @@
 template <typename T>
 Operand<T>::Operand( eOperandType type, std::string const & value )
 {
-	std::cout << "new [" << type << "] " << value << std::endl; 
+	//std::cout << "new [" << type << "] " << value << std::endl; 
 		if ( value.empty())
 		{
 			std::cerr << "Error: No number" << std::endl;
@@ -128,7 +128,7 @@ Operand<T>::Operand( eOperandType type, std::string const & value )
 		} catch (std::exception &e) {
 			throw ;
 		}
-		std::cout << "OK" << std::endl;
+
 }
 /*
 Operand::Operand( Operand const & operand )

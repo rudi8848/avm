@@ -97,6 +97,22 @@ amv :
 
 
         TODO:
-        1.  Do NOT close stdin after exit instruction. End of input is only ;;
+        +   1.  Do NOT close stdin after exit instruction. End of input is only ;;
         2. figure out what for is precision
-        3. how to check overflow and what the heck is underflow
+        +   3. how to check overflow and what the heck is underflow
+
+
+
+
+
+
+
+
+
+push int32(2)
+push int32(3)
+add
+assert int32(5)
+dump
+exit
+;;

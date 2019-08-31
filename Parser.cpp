@@ -1,8 +1,6 @@
 #include "Parser.hpp"
 
-/*
- *  check if there is one instruction per line (via states)
- * */
+
 std::list<Token*> &    Parser::getParsedInput()
 {
     Token *tok;
@@ -10,7 +8,7 @@ std::list<Token*> &    Parser::getParsedInput()
     std::string line;
     try {
         while (std::getline(std::cin, line)) {
-            //std::getline(std::cin, line);
+            
             if (!line.size()) {
                 continue;
             }
@@ -21,10 +19,7 @@ std::list<Token*> &    Parser::getParsedInput()
             std::istringstream ist(line);
             std::string word;
 
-            /*  reading 1 line by single words
-             * first MUST be an instruction (or comment, in this case no need to read next words)
-             * second OPTIONAL operand or comment
-             * */
+            
             if (ist >> word) {
                 if ((tok = Lexer::getToken(word)) && tok->type == INSTRUCTION) {
                     this->tokens.push_back(tok);
@@ -33,24 +28,24 @@ std::list<Token*> &    Parser::getParsedInput()
                             if ((tok = Lexer::getToken(word)) && tok->type == OPERAND) {
                                 this->tokens.push_back(tok);
                             } else {
-                                std::cerr << "Unexpected argument" << std::endl;
+                                std::cerr << "Unexpected argument. ";
                                 throw SyntaxError();
                             }
                         } else {
-                            std::cerr << "Argument expected." << std::endl;
+                            std::cerr << "Argument expected. ";
                             throw SyntaxError();
                         }
                     } else if (tok->content == CLOSEINPUT)
                         break;
                     if (ist >> word &&
-                        (tok = Lexer::getToken(word))) // if there is next word and it is not comment - return error
+                        (tok = Lexer::getToken(word)))
                     {
                         if (tok->type == INSTRUCTION && tok->content == CLOSEINPUT) {
                             this->tokens.push_back(tok);
                             break;
                         }
                         else {
-                            std::cerr << "Too much arguments." << std::endl;
+                            std::cerr << "Too much arguments. ";
                             throw SyntaxError();
                         }
                     }
@@ -61,12 +56,15 @@ std::list<Token*> &    Parser::getParsedInput()
                 }
             }
         }
-        return this->tokens;
+       
     }
     catch (std::exception &e)
     {
-        throw;
+
+        std::cerr << e.what() << std::endl;
+        this->tokens.clear();
     }
+    return this->tokens;
 }
 
 
