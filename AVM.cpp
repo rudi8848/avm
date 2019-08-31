@@ -2,12 +2,28 @@
 AVM::AVM(){}
 AVM::~AVM(){}
 
+bool AVM::isExitCorrect(std::list<Token*> const & tokens) {
+
+    auto i = tokens.rbegin();
+
+    while (i != tokens.rend()) {
+
+        if ((*i)->type == INSTRUCTION && (*i)->content == EXIT) {
+            return true;
+        }
+        i++;
+    }
+
+    //tokens.back()->type != INSTRUCTION || tokens.back()->content != EXIT
+    return false;
+}
+
 void AVM::execute(std::list<Token*> & tokens) {
-    std::cout << __PRETTY_FUNCTION__<< std::endl;
+    
     auto i = tokens.begin();
     Factory factory;
-
-    if (tokens.empty() || tokens.back()->type != INSTRUCTION || tokens.back()->content != EXIT) {
+//  check all tokens from back to start and if there is no exit - throw exception
+    if (tokens.empty() || !isExitCorrect(tokens)) {
         throw NoExitInstruction();
     }
     try {

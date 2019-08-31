@@ -40,12 +40,12 @@ std::list<Token*> &    Parser::getParsedInput()
                             std::cerr << "Argument expected." << std::endl;
                             throw SyntaxError();
                         }
-                    } else if (tok->content == EXIT)
+                    } else if (tok->content == CLOSEINPUT)
                         break;
                     if (ist >> word &&
                         (tok = Lexer::getToken(word))) // if there is next word and it is not comment - return error
                     {
-                        if (tok->type == INSTRUCTION && tok->content == EXIT) {
+                        if (tok->type == INSTRUCTION && tok->content == CLOSEINPUT) {
                             this->tokens.push_back(tok);
                             break;
                         }

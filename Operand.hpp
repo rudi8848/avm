@@ -3,8 +3,10 @@
 
 #include "IOperand.hpp"
 #include "Factory.hpp"
+#include "AVM.hpp"
 #include <iostream>
 #include <cmath>
+#include <limits>
 
 template <typename T>
 class Operand : public IOperand

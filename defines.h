@@ -35,6 +35,7 @@ typedef enum
     MOD,
     PRINT,
     EXIT,
+    CLOSEINPUT,
     COMMENT,
     WORDS
 } eKeyword;

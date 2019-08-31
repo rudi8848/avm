@@ -13,31 +13,122 @@ Operand<T>::Operand( eOperandType type, std::string const & value )
 		this->_type = type;
 		this->_str = value;
         this->_precision = 0;
-		if (type == Int8 || type == Int16 || type == Int32)
-            this->_val = stoi(value);
-		else if (type == Float || type == Double)
-		{
-		    std::string tmp = "";
-			bool point = false;
-			for (auto i = value.begin(); i != value.end(); ++i)
+        try
+        {
+			if (type == Int8 || type == Int16 || type == Int32) {
+
+	            int tmpval = std::stoi(value);
+
+	            switch (type)
+	            {
+	            	case Int8:
+	            	{
+	            		
+	            		if (tmpval > std::numeric_limits<signed char>::max()) {
+	            			
+	            			throw AVM::Overflow();
+	            		}
+	            		else if (tmpval < std::numeric_limits<signed char>::lowest()) {
+	            			
+	            			throw AVM::Underflow();
+	            		}
+	            		this->_val = tmpval;
+	            		break;
+	            	}
+	            	case Int16:
+	            	{
+	            		
+	            		if (tmpval > std::numeric_limits<short>::max()) {
+	            			
+	            			throw AVM::Overflow();
+	            		}
+	            		else if (tmpval < std::numeric_limits<short>::lowest()) {
+	            			
+	            			throw AVM::Underflow();
+	            		}
+	            		this->_val = tmpval;
+	            		break;
+	            	}
+	            	case Int32:
+	            	{
+	            		
+	            		if (tmpval > std::numeric_limits<int>::max()) {
+	            			
+	            			throw AVM::Overflow();
+	            		}
+	            		else if (tmpval < std::numeric_limits<int>::lowest()) {
+	            			
+	            			throw AVM::Underflow();
+	            		}
+	            		this->_val = tmpval;
+	            		break;
+	            	}
+	            	default:
+	            		break;
+	            }
+	            
+			}
+			else if (type == Float || type == Double)
 			{
-				if (point)
-					++this->_precision;
-				if ((*i == '.' || *i == ',') && !point) {
-                    point = true;
-                    tmp += ".";
-                }
-					else if ((*i == '.' || *i == ',') && point)
+			    std::string tmp = "";
+				bool point = false;
+				for (auto i = value.begin(); i != value.end(); ++i)
 				{
-                    std::cerr << "Error: Extra point" << std::endl;
-                    exit(EXIT_FAILURE);
-                }
+					if (point)
+						++this->_precision;
+					if ((*i == '.' || *i == ',') && !point) {
+	                    point = true;
+	                    tmp += ".";
+	                }
+					else if ((*i == '.' || *i == ',') && point)
+					{
+	                    std::cerr << "Error: Extra point" << std::endl;
+	                    exit(EXIT_FAILURE);
+	                }
 					else
 					    tmp += *i;
+				}
+
+				long double tmpval = std::stold(tmp);
+				
+				switch (type)
+				{
+					case Float:
+					{
+
+						if (tmpval > std::numeric_limits<float>::max()) {
+							throw AVM::Overflow();
+						}
+						else if (tmpval < std::numeric_limits<float>::lowest()) {
+							throw AVM::Underflow();
+						}
+						this->_val = stof(tmp);
+						break;
+					
+					}
+					case Double:
+					{
+
+						if (tmpval > std::numeric_limits<double>::max()) {
+							throw AVM::Overflow();
+						}
+						else if (tmpval < std::numeric_limits<double>::lowest()) {
+							throw AVM::Underflow();
+						}
+						this->_val = stod(tmp);
+						break;
+
+					}
+					default:
+						break;
+				}
+
+				this->_str = tmp;
 			}
-            this->_val = (type == Double ? stod(tmp) : stof(tmp));
-			this->_str = tmp;
+		} catch (std::exception &e) {
+			throw ;
 		}
+		std::cout << "OK" << std::endl;
 }
 /*
 Operand::Operand( Operand const & operand )

@@ -10,7 +10,10 @@
 
 class AVM
 {
-    SuperStack<IOperand *> stack;
+
+    SuperStack <const IOperand* > _stack;
+
+	bool isExitCorrect(std::list<Token*> const & tokens);
 
 public:
 	AVM();
@@ -33,6 +36,9 @@ public:
 	void	exit( void );
 
 
+/*
+**				Exceptions:
+*/
 
 
 	class Overflow : public std::exception
@@ -99,8 +105,6 @@ public:
 		virtual const char *what() const throw();
 	};
 
-private:
-	SuperStack <const IOperand* > _stack;
 	
 };
 

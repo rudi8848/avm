@@ -52,9 +52,14 @@ bool    Lexer::isInstruction(std::string const & word, eKeyword &content)
             content = PRINT;
             return true;
         }
-        else if (word == ";;" || word == "exit")
+        else if (word == "exit")
         {
             content = EXIT;
+            return true;
+        }
+        else if (word == ";;")
+        {
+            content = CLOSEINPUT;
             return true;
         }
         else if (word == ";")
@@ -106,10 +111,15 @@ bool    Lexer::isOperand(std::string const & word, eOperandType & type, std::str
         value = result.str(i);
         std::string operand = result.str(0);
 
-        if (operand.find("double"))
+
+        if (operand.find("double") != std::string::npos) {
+
             type =  Double;
-        else
+        }
+        else {
+
             type = Float;
+        }
 
         return true;
     }

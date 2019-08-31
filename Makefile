@@ -33,8 +33,7 @@ $(NAME): $(SRCS) $(HDRS)
 	g++ -std=c++11 -Wall -Wextra -Werror -o $(NAME) $(SRCS)
 
 clean:
-	rm *.o
-
-fclean:
-	clean
 	rm $(NAME)
+
+
+re: clean $(NAME)
