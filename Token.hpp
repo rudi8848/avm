@@ -6,9 +6,14 @@
 
 struct Token
 {
-    eTokenType  type;           //  instruction, operand
-    int         content;        //  what exactly    (eKeyword, eOperandType)
-    std::string value;          //  for operand
+    Token();
+    Token( Token const & t );
+    Token &operator=( Token const & t );
+    ~Token();
+
+    eTokenType  type;
+    int         content;
+    std::string value;
 };
 
 #endif

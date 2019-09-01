@@ -1,5 +1,25 @@
 #include "Parser.hpp"
 
+Parser::Parser(){
+
+}
+
+Parser::Parser( Parser const & p ){
+    this->tokens = p.tokens;
+}
+
+Parser & Parser::operator= (Parser const & p ){
+    if (this != &p) {
+        tokens.clear();
+        tokens = p.tokens;
+    }
+    return *this;
+}
+
+Parser::~Parser(){
+    tokens.clear();
+}
+
 
 std::list<Token*> &    Parser::getParsedInput()
 {

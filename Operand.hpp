@@ -13,8 +13,8 @@ class Operand : public IOperand
 {
 public:
 	Operand( eOperandType type, std::string const & value );
-	// Operand( Operand const & operand );
-	// Operand & operator= ( Operand const & operand );
+	 Operand( Operand const & operand );
+	 Operand & operator= ( Operand const & operand );
 	~Operand();
 
 	IOperand const * operator+( IOperand const & rhs ) const ;

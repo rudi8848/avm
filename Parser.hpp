@@ -9,8 +9,12 @@
 #include "defines.h"
 
 class Parser {
-//  initialize empty list of tokens
+
 public:
+    Parser();
+    Parser( Parser const & p );
+    Parser &operator= (Parser const & p );
+    ~Parser();
     std::list<Token*> &    getParsedInput( void );
 private:
     std::list<Token*> tokens;

@@ -3,14 +3,11 @@ NAME =	avm
 SRCS = 	IOperand.cpp	\
 		Lexer.cpp		\
 		Parser.cpp		\
-		Factory.cpp		\
+		Factory.cpp     \
+		Token.cpp       \
 		AVM.cpp			\
 		main.cpp	
-		#Double.cpp 	\
-		#Float.cpp		\
-		#Int16.cpp		\
-		#Int32.cpp		\
-		#Int8.cpp		\
+
 		
 
 HDRS = 	IOperand.hpp	\
@@ -20,11 +17,7 @@ HDRS = 	IOperand.hpp	\
 		Parser.hpp		\
 		SuperStack.hpp		\
 		Factory.hpp	
-		#Double.hpp		\
-		#Float.hpp		\
-		#Int16.hpp		\
-		#Int32.hpp		\
-		#Int8.hpp		\
+
 		
 
 all: 	$(NAME)

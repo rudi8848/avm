@@ -1,5 +1,18 @@
 #include "AVM.hpp"
+
 AVM::AVM(){}
+
+AVM::AVM( AVM const & avm ){
+    this->_stack = avm._stack;
+}
+
+AVM & AVM::operator= ( AVM const & avm ){
+    if (this != &avm) {
+        this->_stack = avm._stack;
+    }
+    return *this;
+}
+
 AVM::~AVM(){}
 
 bool AVM::isExitCorrect(std::list<Token*> const & tokens) {

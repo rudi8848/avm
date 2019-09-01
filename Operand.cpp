@@ -4,7 +4,7 @@
 template <typename T>
 Operand<T>::Operand( eOperandType type, std::string const & value )
 {
-	//std::cout << "new [" << type << "] " << value << std::endl; 
+
 		if ( value.empty())
 		{
 			std::cerr << "Error: No number" << std::endl;
@@ -130,17 +130,28 @@ Operand<T>::Operand( eOperandType type, std::string const & value )
 		}
 
 }
-/*
-Operand::Operand( Operand const & operand )
-{
 
+template <typename T>
+Operand<T>::Operand( Operand const & operand )
+{
+    this->_type = operand._type;
+    this->_val = operand._val;
+    this->str = operand._str;
+    this->_precision = operand._precision;
 }
 
-Operand & Operand::operator= ( Operand const & operand )
+template <typename T>
+Operand<T> & Operand<T>::operator= ( Operand const & operand )
 {
-	return this;
+    if (this != &operand) {
+        this->_type = operand._type;
+        this->_val = operand._val;
+        this->str = operand._str;
+        this->_precision = operand._precision;
+    }
+	return *this;
 }
-*/
+
 template <typename T>
 Operand<T>::~Operand()
 {
