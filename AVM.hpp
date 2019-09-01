@@ -22,20 +22,6 @@ public:
 	~AVM();
 
 	void execute(std::list<Token*> & tokens);
-
-	void	push( IOperand *operand );
-	void	pop( void );
-	void	dump( void );
-	void	assert( std::string const & val );
-	void	add( void );
-	void	sub( void );
-	void	mul( void );
-	void	div( void );
-	void	mod( void );
-	void	print( void );
-	void	exit( void );
-
-
 /*
 **				Exceptions:
 */
@@ -105,6 +91,13 @@ public:
 		virtual const char *what() const throw();
 	};
 
+    class SomeError : public std::exception
+    {
+    public:
+        SomeError();
+        ~SomeError() throw () {};
+        virtual const char *what() const throw();
+    };
 	
 };
 

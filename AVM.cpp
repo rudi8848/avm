@@ -27,7 +27,6 @@ bool AVM::isExitCorrect(std::list<Token*> const & tokens) {
         i++;
     }
 
-    //tokens.back()->type != INSTRUCTION || tokens.back()->content != EXIT
     return false;
 }
 
@@ -35,7 +34,7 @@ void AVM::execute(std::list<Token*> & tokens) {
     
     auto i = tokens.begin();
     Factory factory;
-//  check all tokens from back to start and if there is no exit - throw exception
+
     if (tokens.empty() || !isExitCorrect(tokens)) {
         throw NoExitInstruction();
     }
@@ -212,4 +211,9 @@ const char* AVM::FalseAssert::what() const throw() {
 AVM::TooLessOperands::TooLessOperands() : exception() {}
 const char* AVM::TooLessOperands::what() const throw() {
 	return "The stack is composed of strictly less that two values when an arithmetic instruction is executed";
+}
+
+AVM::SomeError::SomeError() : exception() {}
+const char* AVM::SomeError::what() const throw() {
+    return "An error occurred";
 }

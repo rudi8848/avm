@@ -1,5 +1,6 @@
 
 #include "IOperand.hpp"
+#include "Parser.hpp"
 
 template <typename T>
 Operand<T>::Operand( eOperandType type, std::string const & value )
@@ -7,8 +8,7 @@ Operand<T>::Operand( eOperandType type, std::string const & value )
 
 		if ( value.empty())
 		{
-			std::cerr << "Error: No number" << std::endl;
-			exit(EXIT_FAILURE);	//	throw exception
+			throw AVM::SomeError();
 		}
 		this->_type = type;
 		this->_str = value;
@@ -82,8 +82,8 @@ Operand<T>::Operand( eOperandType type, std::string const & value )
 	                }
 					else if ((*i == '.' || *i == ',') && point)
 					{
-	                    std::cerr << "Error: Extra point" << std::endl;
-	                    exit(EXIT_FAILURE);
+	                    std::cerr << "Error: Extra point. " ;
+	                    throw AVM::SomeError();
 	                }
 					else
 					    tmp += *i;
