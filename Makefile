@@ -1,7 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gvynogra <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/09/07 13:14:53 by gvynogra          #+#    #+#              #
+#    Updated: 2019/09/07 13:14:56 by gvynogra         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME =	avm
 
-SRCS = 	IOperand.cpp	\
-		Lexer.cpp		\
+SRCS = 	Lexer.cpp		\
 		Parser.cpp		\
 		Factory.cpp     \
 		Token.cpp       \
@@ -15,7 +26,7 @@ HDRS = 	IOperand.hpp	\
 		Lexer.hpp		\
 		AVM.hpp			\
 		Parser.hpp		\
-		SuperStack.hpp		\
+		SuperStack.hpp	\
 		Factory.hpp	
 
 		

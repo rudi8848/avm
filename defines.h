@@ -1,6 +1,14 @@
-//
-// Created by Ganna VYNOGRADOVA on 2019-07-28.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gvynogra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 13:16:53 by gvynogra          #+#    #+#             */
+/*   Updated: 2019/09/07 13:16:55 by gvynogra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef AVM_DEFINES_H
 #define AVM_DEFINES_H
@@ -9,7 +17,7 @@ typedef enum {
     INSTRUCTION,
     OPERAND,
     ERROR,
-    END         //  end of line. we must read until ;; or error
+    END
 } eTokenType;
 
 typedef enum
@@ -39,14 +47,5 @@ typedef enum
     COMMENT,
     WORDS
 } eKeyword;
-/*
-typedef enum
-{
-    NEUTRAL,
-    OPERAND_WAITING,
-    EOL_WAITING,
-    //COMMENT,	// 	';'
-    END 		//	';;'
-} eStates;
-*/
+
 #endif //AVM_DEFINES_H

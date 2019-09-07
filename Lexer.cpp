@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Lexer.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gvynogra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/07 13:14:32 by gvynogra          #+#    #+#             */
+/*   Updated: 2019/09/07 13:14:35 by gvynogra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Lexer.hpp"
 
 bool    Lexer::isInstruction(std::string const & word, eKeyword &content)
@@ -78,7 +90,7 @@ bool    Lexer::isOperand(std::string const & word, eOperandType & type, std::str
 
     std::regex integer ("(int(8|16|32))"
                        "(\\()"
-                       "([+-]?[0-9]+)"  //  [.,] for double
+                       "([+-]?[0-9]+)"
                        "(\\))");
     std::regex point("(float|double)"
                      "(\\()"
@@ -95,12 +107,18 @@ bool    Lexer::isOperand(std::string const & word, eOperandType & type, std::str
 
         std::string operand = result.str(i - 2);
         size_t len = operand.length();
-        if (operand[len - 1] == '2')
+        if (operand[len - 1] == '2'){
+
             type = Int32;
-        else if (operand[len - 1] == '6')
+        }
+        else if (operand[len - 1] == '6'){
+
             type = Int16;
-        else if (operand[len - 1] == '8')
+        }
+        else if (operand[len - 1] == '8'){
+            
             type = Int8;
+        }
 
         return  true;
     }
