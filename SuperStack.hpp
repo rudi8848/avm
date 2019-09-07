@@ -21,9 +21,11 @@
 template <typename T>
 class SuperStack : public std::list<T>
 {
+	SuperStack( SuperStack const & );
+	SuperStack & operator= ( SuperStack const& );
 
 public:
-	SuperStack() : std::list<T>() {}
+	SuperStack() : std::list<T>() {}	
 	~SuperStack() {}
 
 
@@ -43,5 +45,6 @@ public:
 private:
 	std::list<T> _stack;
 };
+
 #include "SuperStack.cpp"
 #endif

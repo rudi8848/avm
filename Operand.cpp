@@ -165,10 +165,8 @@ Operand<T> & Operand<T>::operator= ( Operand const & operand )
 }
 
 template <typename T>
-Operand<T>::~Operand()
-{
-	std::cout<<"destructor for " << this->_str <<std::endl;
-}
+Operand<T>::~Operand() {}
+
 template <typename T>
 int 			Operand<T>::getPrecision( void ) const
 {

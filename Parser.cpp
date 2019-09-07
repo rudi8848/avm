@@ -39,9 +39,11 @@ std::list<Token*> &    Parser::getParsedInput()
 
     std::string line;
     try {
+
         while (std::getline(std::cin, line)) {
             
             if (!line.size()) {
+
                 continue;
             }
             size_t commentPos = -1;
@@ -110,6 +112,9 @@ std::list<Token*> &    Parser::getParsedInput()
     {
 
         std::cerr << e.what() << std::endl;
+        for (auto i = tokens.begin(); i != tokens.end(); i++) {
+            delete *i;
+        }
         this->tokens.clear();
     }
     return this->tokens;

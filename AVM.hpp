@@ -26,11 +26,11 @@ class AVM
     SuperStack <const IOperand* > _stack;
 
 	bool isExitCorrect(std::list<Token*> const & tokens);
+	AVM( AVM const & avm );
+	AVM & operator= ( AVM const & avm );
 
 public:
 	AVM();
-	AVM( AVM const & avm );
-	AVM & operator= ( AVM const & avm );
 	~AVM();
 
 	void execute(std::list<Token*> & tokens);

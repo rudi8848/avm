@@ -16,7 +16,7 @@
 #include <iostream>
 #include "Parser.hpp"
 #include "AVM.hpp"
-
+#include <fstream>
 
 int     main(void)
 {
@@ -28,6 +28,11 @@ int     main(void)
         std::list<Token*> input = parser.getParsedInput();
         while (input.empty()) {
 
+            if (std::cin.rdstate() != 0) {
+
+                std::cerr << "Closed input" << std::endl;
+                exit(EXIT_FAILURE);
+            }
             std::cerr << "Repeat input" << std::endl;
             input = parser.getParsedInput();
         
@@ -37,9 +42,8 @@ int     main(void)
     catch (std::exception &e)
     {
         std::cerr << e.what() << std::endl;
-        system("leaks avm");
         exit(EXIT_FAILURE);
     }
-    system("leaks avm");
+
     return 0;
 }

@@ -23,21 +23,27 @@ SRCS = 	Lexer.cpp		\
 
 HDRS = 	IOperand.hpp	\
 		Operand.hpp		\
+		Operand.cpp		\
 		Lexer.hpp		\
+		Token.cpp       \
 		AVM.hpp			\
 		Parser.hpp		\
 		SuperStack.hpp	\
-		Factory.hpp	
+		SuperStack.cpp	\
+		Factory.hpp		\
+		defines.h
 
-		
+CC		= clang++
+FLAGS	= -Wall -Wextra -Werror -std=c++11
 
 all: 	$(NAME)
 
 $(NAME): $(SRCS) $(HDRS)	 
-	g++ -std=c++11 -Wall -Wextra -Werror -o $(NAME) $(SRCS)
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS)
 
 clean:
 	rm $(NAME)
 
+fclean: clean
 
-re: clean $(NAME)
+re: fclean all
