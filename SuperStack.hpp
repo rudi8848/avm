@@ -16,21 +16,23 @@
 # include <iostream>
 # include <list>
 # include <vector>
-# include <stack>
 # include <iterator>
 
 template <typename T>
-class SuperStack : public std::stack<T>
+class SuperStack : public std::list<T>
 {
 
 public:
-	SuperStack() : std::stack<T>() {}
+	SuperStack() : std::list<T>() {}
 	~SuperStack() {}
+
 
 	T 		top( void ) const;
 	void	push( T val );
 	size_t 	size( void ) const;
 	void	pop( void );
+	void	clear( void );
+	bool 	empty( void ) const;
 
 	typedef typename std::list<T>::iterator iterator;
 

@@ -35,6 +35,18 @@ void	SuperStack<T>::pop(void)
 }
 
 template <typename T>
+void	SuperStack<T>::clear( void )
+{
+	this->_stack.clear();
+}
+
+template <typename T>
+bool 	SuperStack<T>::empty( void ) const
+{
+	return this->_stack.empty();
+}
+
+template <typename T>
 typename SuperStack<T>::iterator	SuperStack<T>::begin()
 {
 	return this->_stack.begin();
@@ -45,3 +57,5 @@ typename SuperStack<T>::iterator	SuperStack<T>::end()
 {
 	return this->_stack.end();
 }
+
+

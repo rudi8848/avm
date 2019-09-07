@@ -80,6 +80,7 @@ void AVM::execute(std::list<Token*> & tokens) {
 
                             throw PopEmptyStack();
                         }
+                        delete this->_stack.top();
                         this->_stack.pop();
                         break;
                     }
@@ -116,6 +117,8 @@ void AVM::execute(std::list<Token*> & tokens) {
                         const IOperand  *left = _stack.top();
                         _stack.pop();
                         _stack.push(*left + *right);
+                        delete left;
+                        delete right;
                         break;
                     }
                     case SUB:
@@ -129,6 +132,8 @@ void AVM::execute(std::list<Token*> & tokens) {
                         const IOperand  *left = _stack.top();
                         _stack.pop();
                         _stack.push(*left - *right);
+                        delete left;
+                        delete right;
                         break;
                     }
                     case MUL:
@@ -142,6 +147,8 @@ void AVM::execute(std::list<Token*> & tokens) {
                         const IOperand  *left = _stack.top();
                         _stack.pop();
                         _stack.push(*left * *right);
+                        delete left;
+                        delete right;
                         break;
                     }
                     case DIV:
@@ -159,6 +166,8 @@ void AVM::execute(std::list<Token*> & tokens) {
                         const IOperand  *left = _stack.top();
                         _stack.pop();
                         _stack.push(*left / *right);
+                        delete left;
+                        delete right;
                         break;
                     }
                     case MOD:
@@ -176,6 +185,8 @@ void AVM::execute(std::list<Token*> & tokens) {
                         const IOperand  *left = _stack.top();
                         _stack.pop();
                         _stack.push(*left % *right);
+                        delete left;
+                        delete right;
                         break;
                     }
                     case PRINT:
@@ -199,10 +210,12 @@ void AVM::execute(std::list<Token*> & tokens) {
             ++i;
         }   //end of while
 
+        
         tokens.clear();
     }
     catch (std::exception &e)
     {
+
         tokens.clear();
         throw;
     }

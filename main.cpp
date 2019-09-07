@@ -37,6 +37,7 @@ int     main(void)
     catch (std::exception &e)
     {
         std::cerr << e.what() << std::endl;
+        system("leaks avm");
         exit(EXIT_FAILURE);
     }
     system("leaks avm");
