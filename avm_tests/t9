@@ -1,0 +1,7 @@
+push float(32.32)
+push float(1)
+add
+push float(3.0)
+add
+dump
+exit
